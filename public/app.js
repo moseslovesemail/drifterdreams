@@ -1,4 +1,5 @@
 const app = document.getElementById('app');
+const pilot = new URLSearchParams(window.location.search).get('pilot');
 
 const seed = {
   applicants: [
@@ -33,7 +34,20 @@ function setRoute(route){
 }
 document.addEventListener('click', e=>{ const btn=e.target.closest('[data-route]'); if(btn) setRoute(btn.dataset.route); });
 
-function renderHome(){ app.innerHTML=document.getElementById('home-template').innerHTML; }
+function renderHome(){
+  app.innerHTML=document.getElementById('home-template').innerHTML;
+  if(pilot==='jenna'){
+    app.insertAdjacentHTML('afterbegin', `<section class="pilot-banner">
+      <div><p class="eyebrow">PRIVATE DRIFTER TEST · FOR JENNA</p><h2>This is yours to break.</h2>
+      <p>No signup and no charge. Try the full loop in this browser: submit a pretend dog, open the Dream Host dashboard, approve it, make a guest RSVP, then look at the venue plan.</p></div>
+      <div class="pilot-steps">
+        <button class="primary" data-route="owner">1 · ADD A TEST DOG</button>
+        <button class="secondary" data-route="host">2 · OPEN DREAM HOST</button>
+        <button class="secondary" data-route="subscribe">3 · SEE DRIFTER PLAN</button>
+      </div>
+    </section>`);
+  }
+}
 
 function renderGuest(){
   app.innerHTML=`<section class="page">
@@ -95,10 +109,10 @@ function renderHost(){
 }
 
 function renderSubscribe(){
-  app.innerHTML=`<section class="page"><div class="page-head"><p class="eyebrow">DRIFTER PILOT</p><h1>KEEP THE CLUB RUNNING.</h1><p>The prototype is free to test. The founding venue plan turns it into a persistent Drifter tool with real data, branded guest pages and ongoing support.</p></div>
+  app.innerHTML=`<section class="page"><div class="page-head"><p class="eyebrow">DRIFTER PILOT</p><h1>KEEP THE CLUB RUNNING.</h1>${pilot==='jenna'?'<p>You have been given private test access. Play with the prototype first; if Drifter wants to keep it, the founding venue plan turns it into a persistent live tool with real data, branded guest pages and ongoing support.</p>':'<p>The prototype is free to test. The founding venue plan turns it into a persistent Drifter tool with real data, branded guest pages and ongoing support.</p>'}</div>
   <div class="pricing"><div class="pricing-grid"><div class="price-card"><p class="eyebrow">PROTOTYPE</p><h2>See how it works</h2><div class="price">$0</div><ul><li>Guest RSVP demo</li><li>Dog-owner application demo</li><li>Dream Host dashboard</li><li>Sample insights</li></ul><button data-route="host">OPEN DEMO</button></div>
-  <div class="price-card featured"><p class="eyebrow">FOUNDING VENUE</p><h2>Drifter Christchurch</h2><div class="price">$89 <small>NZD / month</small></div><ul><li>Drifter-branded live app</li><li>Unlimited dog applications and sessions</li><li>Guest RSVP + check-in</li><li>Host safety workflow</li><li>Feedback and participation reporting</li><li>Ongoing small improvements during the pilot</li></ul><button id="subscribe-live">START DRIFTER PLAN</button><p class="mini">Cancel monthly. Payment processing is the next live integration; this button demonstrates the checkout handoff.</p></div></div></div></section>`;
-  document.getElementById('subscribe-live').onclick=()=>modal('Subscription handoff','<p><strong>NZ$89/month · Drifter Christchurch</strong></p><p>In the deployed version this button hands off to recurring checkout. After payment, Drifter receives a persistent venue account and the demo data is replaced with the live database.</p><p class="mini">No charge is made from this prototype.</p>','DONE');
+  <div class="price-card featured"><p class="eyebrow">FOUNDING VENUE</p><h2>Drifter Christchurch</h2><div class="price">$89 <small>NZD / month</small></div><ul><li>Drifter-branded live app</li><li>Unlimited dog applications and sessions</li><li>Guest RSVP + check-in</li><li>Host safety workflow</li><li>Feedback and participation reporting</li><li>Ongoing small improvements during the pilot</li></ul><button id="subscribe-live">ACTIVATE FOR DRIFTER</button><p class="mini">Cancel monthly. Payment processing is the next live integration; this button demonstrates the checkout handoff.</p></div></div></div></section>`;
+  document.getElementById('subscribe-live').onclick=()=>modal('Ready for Drifter activation','<p><strong>NZ$89/month · Drifter Christchurch</strong></p><p>This is the purchase handoff. Once the billing link is connected, Drifter can activate the live venue account here and the test data is replaced with the persistent database.</p><p class="mini">No charge is made from this prototype yet.</p>','DONE');
 }
 
 function field(label,name,type,placeholder){return `<div class="field"><label>${label}</label><input ${name==='owner'||name==='dog'?'required':''} name="${name}" type="${type}" placeholder="${placeholder}"></div>`}
