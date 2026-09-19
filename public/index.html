@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drifter Good Dog Club</title>
+  <meta name="description" content="A Drifter Christchurch guest wellbeing experience connecting travellers with calm local dogs and their people." />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" data-route="home" aria-label="Home">
+      <span class="brand-main">DRIFTER</span>
+      <span class="brand-sub">CHRISTCHURCH</span>
+    </button>
+    <nav>
+      <button data-route="guest">GUEST</button>
+      <button data-route="owner">DOG OWNER</button>
+      <button data-route="host">DREAM HOST</button>
+      <button class="pill" data-route="subscribe">SUBSCRIBE</button>
+    </nav>
+  </header>
+
+  <main id="app"></main>
+
+  <footer>
+    <div>
+      <strong>DRIFTER GOOD DOG CLUB</strong>
+      <p>Social dog visits for travellers who miss the animals they love.</p>
+    </div>
+    <div class="footer-note">Prototype · Christchurch · Not a clinical animal-therapy service.</div>
+  </footer>
+
+  <template id="home-template">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">A NEW DRIFTER SOCIAL</p>
+        <h1>GOOD<br>DOG<br>CLUB.</h1>
+        <p class="hero-text">For the homesick, the dog-missing and anyone who could use a calm hour with a very good local dog.</p>
+        <div class="actions">
+          <button class="primary" data-route="guest">I'M A GUEST</button>
+          <button class="secondary" data-route="owner">I HAVE A GREAT DOG</button>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Good Dog Club graphic">
+        <div class="sun"></div>
+        <svg viewBox="0 0 520 520" role="img" aria-label="Friendly dog illustration">
+          <path d="M176 176c-38-60-81-80-108-64-23 14-14 64 36 112" fill="#7e251f"/>
+          <path d="M344 176c38-60 81-80 108-64 23 14 14 64-36 112" fill="#7e251f"/>
+          <ellipse cx="260" cy="274" rx="155" ry="142" fill="#d9a465"/>
+          <ellipse cx="204" cy="250" rx="18" ry="23" fill="#171515"/>
+          <ellipse cx="316" cy="250" rx="18" ry="23" fill="#171515"/>
+          <ellipse cx="260" cy="303" rx="35" ry="25" fill="#171515"/>
+          <path d="M233 328c18 24 36 24 54 0" fill="none" stroke="#171515" stroke-width="8" stroke-linecap="round"/>
+          <path d="M260 329v32" fill="none" stroke="#171515" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+        <div class="stamp">LOCAL DOGS<br>+ GLOBAL HUMANS</div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div><span>01</span><strong>LOCAL DOG PEOPLE APPLY</strong><p>Temperament, availability, health and handling details.</p></div>
+      <div><span>02</span><strong>DREAM HOST CURATES</strong><p>Approve the right dogs, create sessions and set capacity.</p></div>
+      <div><span>03</span><strong>GUESTS RSVP</strong><p>Travellers opt in, check allergies/fears and join a session.</p></div>
+      <div><span>04</span><strong>DRIFTER LEARNS</strong><p>Simple participation and guest-feedback data after each session.</p></div>
+    </section>
+
+    <section class="section split">
+      <div>
+        <p class="eyebrow">NEXT DEMO SESSION</p>
+        <h2>SUNDAY<br>3:30 PM</h2>
+        <p>Terrace · 45 minutes · 12 guest places</p>
+      </div>
+      <div class="dog-cards">
+        <article class="dog-card"><div class="dog-avatar rust">P</div><div><h3>Pepper</h3><p>7 · Labrador cross</p><span>Calm · food motivated · professional cuddler</span></div></article>
+        <article class="dog-card"><div class="dog-avatar sage">M</div><div><h3>Mabel</h3><p>5 · Golden Retriever</p><span>Gentle · relaxed with groups · loves floor time</span></div></article>
+      </div>
+    </section>
+
+    <section class="section quote-block">
+      <p class="eyebrow">WHY IT EXISTS</p>
+      <blockquote>"Some guests are months and many countries into a trip. Some just arrived for a one-year visa. Missing home can look a lot like missing the dog."</blockquote>
+      <button class="text-link" data-route="host">SEE THE DREAM HOST DASHBOARD →</button>
+    </section>
+  </template>
+
+  <script src="/app.js"></script>
+</body>
+</html>
