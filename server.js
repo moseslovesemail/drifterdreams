@@ -9,6 +9,7 @@ const root = path.join(__dirname, 'public');
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } }) : null;
 const HOST_KEY = process.env.HOST_KEY || '';
 const STRIPE_PAYMENT_LINK = process.env.STRIPE_PAYMENT_LINK || '';
+const SETUP_PAYMENT_LINK = process.env.SETUP_PAYMENT_LINK || '';
 const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml'};
 
 async function initDb(){
@@ -141,9 +142,10 @@ http.createServer(async (req,res)=>{
       if(pool){await pool.query('select 1');}
       return json(res,200,{ok:true,product:'Drifter Good Dog Club',database:!!pool});
     }
+    if(url.pathname==='/api/proposal-config') return json(res,200,{setupPaymentLink:SETUP_PAYMENT_LINK});
     if(url.pathname.startsWith('/api/')) return await api(req,res,url);
     const clean=decodeURIComponent(url.pathname);
-    let file=clean==='/'?'index.html':clean.replace(/^\/+/, '');
+    let file=clean==='/'?'index.html':clean==='/proposal'?'proposal.html':clean.replace(/^\/+/, '');
     let full=path.normalize(path.join(root,file));
     if(!full.startsWith(root)){res.writeHead(403);return res.end('Forbidden');}
     fs.stat(full,(err,stat)=>{
